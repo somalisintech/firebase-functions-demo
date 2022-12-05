@@ -1,4 +1,5 @@
 import admin from 'firebase-admin';
+
 admin.initializeApp();
 export default class FirestoreService {
   private collection;
@@ -6,8 +7,8 @@ export default class FirestoreService {
     this.collection = admin.firestore().collection(collectionPath);
   }
 
-  async saveDocument(payload: Record<string, unknown>) {
-    return this.collection.doc().set(payload);
+  async saveDocument(payload: Record<string, any>) {
+    return payload?.id ? this.collection.doc(payload.id).set(payload) : this.collection.doc().set(payload);
   }
 
   async getDocumentSnapshot(id: string) {
