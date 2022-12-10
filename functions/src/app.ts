@@ -1,7 +1,7 @@
 import express from 'express';
 import cors from 'cors';
 import { json } from 'body-parser';
-import { catFactsRoutes, chuckNorrisJokesRoutes } from './routes';
+import { catFactsRoutes, chuckNorrisJokesRoutes, openAIRoutes } from './routes';
 import * as functions from 'firebase-functions';
 
 const app = express();
@@ -11,5 +11,6 @@ app.use(json());
 
 app.use('/cat', catFactsRoutes);
 app.use('/chuck-norris', chuckNorrisJokesRoutes);
+app.use('/open-ai', openAIRoutes);
 
 exports.app = functions.region('europe-west2').https.onRequest(app);

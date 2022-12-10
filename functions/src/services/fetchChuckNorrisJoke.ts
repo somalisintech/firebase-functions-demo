@@ -1,4 +1,5 @@
-import fetch from 'node-fetch';
+import ApiClient from '../utils/apiClient';
 
-export const fetchChuckNorrisJoke = () =>
-  fetch('https://api.chucknorris.io/jokes/random').then((response) => response.json());
+const { get } = ApiClient.getInstance();
+
+export const fetchChuckNorrisJoke = () => get('https://api.chucknorris.io/jokes/random');
